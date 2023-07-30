@@ -9,7 +9,8 @@
              </RouterLink>
 
              <div class="flex gap-3">
-                <i class="fa-solid fa-circle-info  text-xl hover:text-weather-secondary duration-150 cursor-pointer"></i>
+                <i class="fa-solid fa-circle-info text-xl hover:text-weather-secondary duration-150 cursor-pointer"></i>
+                <i class="fa-solid fa-plus text-xl hover:text-weather-secondary duration-150 cursor-pointer"></i>
              </div>
         </nav>
     </header>
