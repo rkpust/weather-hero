@@ -39,7 +39,6 @@ const getSearchResults = () => {
    if (searchQuery.value !== "") {
     const result = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`);
     mapboxSearchResults.value = result.data.features;
-    console.log(mapboxSearchResults.value);
     return;
    }
    mapboxSearchResults.value = null;
