@@ -7,11 +7,11 @@
             </p>
         </div>
         <!-- Weather Overview-->
-        <div class="flex flex-col item-center text-white py-12">
-            <h1 class="text-4xl mb-2 text-center">
+        <div class="flex flex-col items-center text-white text-center py-12">
+            <h1 class="text-4xl mb-2">
                 {{ route.params.city }}
             </h1>
-            <p class="text-sm mb-12 text-center">
+            <p class="text-sm mb-12">
                     {{
                         new Date(weatherData.currentTime).toLocaleDateString(
                             "en-us",
@@ -26,7 +26,25 @@
                         )
                     }}
                 </p>
+                <p class="text-8xl mb-8">
+                    {{ Math.round(weatherData.current.temp) }}&deg F
+                </p>
+                <p>
+                    Feels Like
+                    <b>
+                        {{ Math.round(weatherData.current.feels_like) }}&deg F
+                    </b>
+                </p>
+                <p class="capitalize">
+                    {{ weatherData.current.weather[0].description }}
+                </p>
+                <img
+                class="w-[150px] h-auto"
+                :src=" `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png` "
+                />
         </div>
+
+        <hr class="border-white border-opacity-10 border w-full"/>
     </div>
 </template>
 
