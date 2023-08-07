@@ -20,19 +20,19 @@
                                 day: "2-digit",
                                 month: "long",
                                 year: "numeric",
-                                hour: 'numeric',
-                                minute: 'numeric',
+                                hour: "numeric",
+                                minute: "numeric",
                             }
                         )
                     }}
                 </p>
                 <p class="text-8xl mb-8">
-                    {{ Math.round(weatherData.current.temp) }}&deg F
+                    {{ Math.round(weatherData.current.temp) }}&deg; F
                 </p>
                 <p>
                     Feels Like
                     <b>
-                        {{ Math.round(weatherData.current.feels_like) }}&deg F
+                        {{ Math.round(weatherData.current.feels_like) }}&deg; F
                     </b>
                 </p>
                 <p class="capitalize">
@@ -54,7 +54,7 @@
                     &nbsp;
                     Dew Point: {{ Math.round(weatherData.current.dew_point) }}&deg F
                 </p>
-                <p class="m-auto">
+                <p class="m-auto gap-2">
                     Humidity: {{ weatherData.current.humidity }} %
                     &nbsp;
                     Pressure: {{ weatherData.current.pressure }} mbar
