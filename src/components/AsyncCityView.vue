@@ -13,7 +13,7 @@
             </h1>
             <p class="text-sm mb-12">
                     {{
-                        new Date(weatherData.data.currentTime).toLocaleDateString(
+                        new Date(weatherData.currentTime).toLocaleDateString(
                             "en-us",
                             {
                                 weekday: "short",
@@ -50,7 +50,7 @@ const getWeatherData = async () => {
             hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
         });
 
-        return weatherData;
+        return weatherData.data;
     } catch (err) {
         console.log(err);
     }
