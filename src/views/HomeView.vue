@@ -30,7 +30,7 @@
       </template>
       </ul>
 
-      <img class="mx-auto" src="/image/weather_logo.png" />
+      <img v-if="!searchQuery" class="mx-auto" src="/image/weather_logo.png" />
     </div>
   </main>
 </template>
