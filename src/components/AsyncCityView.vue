@@ -47,26 +47,30 @@
         <hr class="border-white border-opacity-10 border w-full"/>
         <!-- More Weather Info-->
 
-        <div class="flex flex-col items-center text-white text-center py-12">
-            <h2 class="text-2xl mb-2">More Info</h2>
-                <p class="m-auto">
-                    Clouds: {{ weatherData.current.clouds }} %
-                    &nbsp;
-                    Dew Point: {{ Math.round(weatherData.current.dew_point) }}&deg F
+        <div class="flex flex-col items-center text-white text-center py-12 gap-2">
+            <h2 class="text-2xl mb-2">More Weather Info</h2>
+                <p>
+                    Clouds: {{ weatherData.current.clouds }} % 
                 </p>
-                <p class="m-auto gap-2">
+                <p>
+                    Dew Point: {{ Math.round(weatherData.current.dew_point) }}&deg; F
+                </p>
+                <p>
                     Humidity: {{ weatherData.current.humidity }} %
-                    &nbsp;
-                    Pressure: {{ weatherData.current.pressure }} mbar
                 </p>
-                <p class="m-auto">
+                <p>
+                    Pressure: {{ weatherData.current.pressure }} mbar 
+                </p>
+                <p>
                     UV Index: {{ weatherData.current.uvi }}
-                    &nbsp;
+                </p>
+                <p>
                     Visibility: {{ weatherData.current.visibility / 1000 }} km
                 </p>
-                <p class="m-auto">
+                <p>
                     Wind Speed: {{ weatherData.current.wind_speed}} km/h
-                    &nbsp;
+                </p>
+                <p>
                     Wind Degree: {{ weatherData.current.wind_deg }}
                 </p>
         </div>
