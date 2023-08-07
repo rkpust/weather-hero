@@ -29,6 +29,8 @@
           </li>
       </template>
       </ul>
+
+      <img class="mx-auto" src="/image/weather_logo.png" />
     </div>
   </main>
 </template>
