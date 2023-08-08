@@ -65,6 +65,32 @@
                 class="w-[150px] h-auto"
                 :src=" `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png` "
                 />
+
+                <div class="flex flex-row items-center gap-4">
+                    <img class="w-[50px] h-[50px] mt-2" src="/image/sunrise.png" />
+                    {{
+                        new Date(weatherData.sunRise).toLocaleTimeString(
+                            "en-us",
+                            {
+                                hour: "numeric",
+                                minute: "numeric",
+                                second: "numeric",
+                            }
+                        )
+                    }}
+
+                    <img class="w-[50px] h-[50px] ml-2" src="/image/sunset.png" />
+                    {{
+                        new Date(weatherData.sunSet).toLocaleTimeString(
+                            "en-us",
+                            {
+                                hour: "numeric",
+                                minute: "numeric",
+                                second: "numeric",
+                            }
+                        )
+                    }}
+                </div>
         </div>
 
         <hr class="border-white border-opacity-10 border w-full"/>
@@ -199,6 +225,14 @@ const getWeatherData = async () => {
         weatherData.data.hourly.forEach((hour) => {
             const utc = hour.dt * 1000 + localOffset;
             hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
+
+        //calculate sunrise date and time 
+        const UTC = weatherData.data.current.sunrise * 1000 + localOffset;
+        weatherData.data.sunRise = UTC + 1000 * weatherData.data.timezone_offset;
+        
+        //calculate sunset date and time 
+        const UtC = weatherData.data.current.sunset * 1000 + localOffset;
+        weatherData.data.sunSet = UtC + 1000 * weatherData.data.timezone_offset;
         });
 
         return weatherData.data;
