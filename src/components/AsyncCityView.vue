@@ -120,10 +120,10 @@
                             class="w-auto h-[50px] object-cover"
                             :src=" `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png` "
                         />
-                        <p class="text-xl" v-if="fahrenheit">
+                        <p class="text-xl mb-8" v-if="fahrenheit">
                             {{ Math.round(hourData.temp) }}&deg;
                         </p>
-                        <p class="text-xl" v-if="celsius">
+                        <p class="text-xl mb-8" v-if="celsius">
                             {{ Math.round((hourData.temp - 32) / 1.8000) }}&deg;
                         </p>
                     </div>
