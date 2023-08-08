@@ -26,13 +26,36 @@
                         )
                     }}
                 </p>
-                <p class="text-8xl mb-8">
-                    {{ Math.round(weatherData.current.temp) }}&deg; F
-                </p>
+                <div class="mb-8 ">
+                    <span class="text-8xl mb-8"
+                    v-if="fahrenheit"
+                    >
+                        {{ Math.round(weatherData.current.temp) }}&deg;
+                    </span>
+                    <span class="text-8xl mb-8" v-if="celsius">
+                        {{ Math.round((weatherData.current.temp - 32) / 1.8000) }}&deg;
+                    </span>
+                    <span 
+                        class="text-8xl cursor-pointer" 
+                        :class="{'text-white': (fahrenheit === true && (celsius === null || celsius === false)),
+                        'text-weather-secondary': (fahrenheit === false && celsius === true)}"
+                        @click="fahrenheitTemp"
+                    >F</span>
+                    <span class="text-8xl text-weather-secondary">|</span>
+                    <span 
+                        class="text-8xl cursor-pointer" 
+                        :class="{'text-white': (celsius === true && fahrenheit === false), 
+                        'text-weather-secondary': ((celsius === false || celsius === null) && fahrenheit === true)}" 
+                        @click="celsiusTemp"
+                    >C</span>
+            </div>
                 <p>
                     Feels Like
-                    <b>
+                    <b v-if="fahrenheit">
                         {{ Math.round(weatherData.current.feels_like) }}&deg; F
+                    </b>
+                    <b v-if="celsius">
+                        {{ Math.round((weatherData.current.feels_like - 32) / 1.8000) }}&deg; C
                     </b>
                 </p>
                 <p class="capitalize">
@@ -52,8 +75,11 @@
                 <p>
                     Clouds: {{ weatherData.current.clouds }} % 
                 </p>
-                <p>
+                <p v-if="fahrenheit">
                     Dew Point: {{ Math.round(weatherData.current.dew_point) }}&deg; F
+                </p>
+                <p v-if="celsius">
+                    Dew Point: {{ Math.round((weatherData.current.dew_point - 32) / 1.8000) }}&deg; C
                 </p>
                 <p>
                     Humidity: {{ weatherData.current.humidity }} %
@@ -94,8 +120,11 @@
                             class="w-auto h-[50px] object-cover"
                             :src=" `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png` "
                         />
-                        <p class="text-xl">
+                        <p class="text-xl" v-if="fahrenheit">
                             {{ Math.round(hourData.temp) }}&deg;
+                        </p>
+                        <p class="text-xl" v-if="celsius">
+                            {{ Math.round((hourData.temp - 32) / 1.8000) }}&deg;
                         </p>
                     </div>
                 </div>
@@ -125,8 +154,10 @@
                     :src=" `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png` "
                     />
                     <div class="flex gap-2 flex-1 justify-end">
-                        <p>H: {{ Math.round(day.temp.max) }}&deg;</p>
-                        <p>L: {{ Math.round(day.temp.min) }}&deg;</p>
+                        <p v-if="fahrenheit">H: {{ Math.round(day.temp.max) }}&deg;</p>
+                        <p v-if="fahrenheit">L: {{ Math.round(day.temp.min) }}&deg;</p>
+                        <p v-if="celsius">H: {{ Math.round((day.temp.max - 32) / 1.8000) }}&deg;</p>
+                        <p v-if="celsius">L: {{ Math.round((day.temp.min - 32) / 1.8000) }}&deg;</p>
                     </div>
                 </div>
             </div>
@@ -137,6 +168,20 @@
 <script setup>
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+
+const celsius = ref(null);
+const fahrenheit = ref(true);
+
+const celsiusTemp = () => {
+    celsius.value = true;
+    fahrenheit.value = false;
+}
+
+const fahrenheitTemp = () => {
+    fahrenheit.value = true;
+    celsius.value = false;
+}
 
 const route = useRoute();
 const getWeatherData = async () => {
