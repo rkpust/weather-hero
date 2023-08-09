@@ -34,6 +34,7 @@
     </div>
 
     <!-- Saved City Info Will Show-->
+    <hr class="border-white border-opacity-10 border w-full mb-8"/>
     <div class="flex flex-col gap-4">
       <Suspense>
         <CityList />
