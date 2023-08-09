@@ -1,11 +1,18 @@
 <template>
     <div v-for="city in savedCities" :key="city.id">
-        <CityCard  :city="city" />
+        <CityCard  :city="city" @click="goToCityView(city)" />
     </div>
+    <p 
+    class="text-center text-white py-24"
+    v-if="savedCities.length === 0"
+    >
+        No locations added. To start tracking a location, search in the field above.
+    </p>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
 import CityCard from "../components/CityCard.vue";
 
@@ -31,4 +38,20 @@ const getCities = async () =>{
 };
 
 await getCities();
+
+const router = useRouter();
+const goToCityView = (city) => {
+    router.push({
+        name: "cityView",
+        params: {
+            state: city.state,
+            city: city.city,
+        },
+        query: {
+            lat: city.coords.lat,
+            lng: city.coords.lng,
+        }
+    });
+    console.log(city);
+};
 </script>
