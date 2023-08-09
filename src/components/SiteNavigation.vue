@@ -19,6 +19,14 @@
                 @click="addCity"
                 v-if="route.query.preview"
                 ></i>
+
+                <!-- Remove City -->
+                <i 
+                    class="fa-solid fa-trash text-xl hover:text-red-900 duration-150 cursor-pointer" 
+                    v-if="route.query.id"
+                    @click="removeCity"
+                >
+                </i>
              </div>
 
              <BaseModal
@@ -88,6 +96,20 @@ const addCity = () => {
     
     console.log(saveCities.value);
 };
+
+const removeCity = () => {
+    const cities = JSON.parse(localStorage.getItem('savedCities'));
+    const updatedCities = cities.filter(
+        (city) => city.id !== route.query.id
+        );
+    
+    localStorage.setItem('savedCities', JSON.stringify(updatedCities));
+    router.push({
+        name: "home",
+    });
+    console.log(cities); 
+    console.log(updatedCities);
+}
 
 
 const modalActive = ref(null);
