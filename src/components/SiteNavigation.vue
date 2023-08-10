@@ -51,8 +51,8 @@
                             a later time on the home page.
                         </li>
                     </ol>
-                    <h2 class="text-2xl">Removing a city</h2>
-                    <p>If you no longer wish to track a city, simply select the city within the home page. At the bottom of 
+                    <h2 class="text-2xl">Removing a city:</h2>
+                    <p>If you no longer wish to track a city, simply select the city within the home page. At the top of 
                         the page, there will be an option to delete the city.
                     </p>
                 </div>
