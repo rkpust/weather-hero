@@ -25,6 +25,7 @@
                             }
                         )
                     }}
+                    ( {{ weatherData.timezone }} )
                 </p>
                 <div class="mb-8 ">
                     <span class="text-8xl mb-8"
