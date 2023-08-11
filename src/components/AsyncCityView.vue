@@ -123,6 +123,9 @@
                     Wind Speed: {{ weatherData.current.wind_speed}} km/h
                 </p>
                 <p>
+                    Wind Gust: {{ weatherData.current.wind_gust}} m/s
+                </p>
+                <p>
                     Wind Degree: {{ weatherData.current.wind_deg }}
                 </p>
         </div>
@@ -161,7 +164,7 @@
         <!-- Daily Weather-->
         <div class="max-w-screen-md w-full py-12">
             <div class="mx-8 text-white">
-                <h2 class="text-2xl text-center mb-4">7 Day Forecast</h2>
+                <h2 class="text-2xl text-center mb-4">8 Day Forecast</h2>
                 <div 
                     v-for="day in weatherData.daily" 
                     :key="day.dt"
