@@ -6,7 +6,7 @@
             <h2 class="text-3xl">
                 {{ city.city }} 
             </h2>
-            <h3>{{ city.state }}</h3>
+            <h3>{{ city.state }}, {{ city.weather.sys.country }}</h3>
         </div>
 
         <div class="flex flex-col gap-2">
@@ -15,10 +15,7 @@
             </p>
             <div class="flex gap-2">
                 <span class="text-xs">
-                    H: {{ Math.round(city.weather.main.temp_max) }}&deg; F
-                </span>
-                <span class="text-xs">
-                    L: {{ Math.round(city.weather.main.temp_min) }}&deg; F
+                    Feels Like : {{ Math.round(city.weather.main.feels_like) }}&deg; F
                 </span>
             </div>
         </div>
