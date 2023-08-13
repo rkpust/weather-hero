@@ -136,30 +136,278 @@
         <div class="max-w-screen-md w-full py-12">
             <div class="mx-8 text-white">
                 <h2 class="text-2xl text-center mb-4">Hourly Weather</h2>
-                <div class="flex gap-10 overflow-x-scroll">
-                    <div v-for="hourData in weatherData.hourly" :key="hourData.dt" class="flex flex-col gap-4 items-center">
-                        <p class="whitespace-nowrap text-md">
-                            {{
-                                new Date(hourData.currentTime).toLocaleTimeString(
-                                    "en-us",
-                                    { hour: "numeric",
-                                })
-                            }}
-                        </p>
-                        <img
-                            class="w-auto h-[50px] object-cover"
-                            :src=" `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png` "
-                        />
-                        <p class="text-xl mb-8" v-if="fahrenheit">
-                            {{ Math.round(hourData.temp) }}&deg;
-                        </p>
-                        <p class="text-xl mb-8" v-if="celsius">
-                            {{ Math.round((hourData.temp - 32) / 1.8000) }}&deg;
-                        </p>
-                    </div>
-                </div>
+                <div class="flex overflow-x-scroll">
+                    <table class="border-collapse border border-white border-opacity-10 mb-8">
+                        <tr class="py-4 text-center">
+                            <th 
+                                class="border border-white border-opacity-10 whitespace-nowrap text-md">
+                                Time :
+                            </th>
+                            <th 
+                                v-for="hourData in weatherData.hourly" 
+                                :key="hourData.dt" 
+                                class="whitespace-nowrap text-md border border-white border-opacity-10"
+                            >
+                                {{
+                                    new Date(hourData.currentTime).toLocaleTimeString("en-us",{ hour: "numeric"})
+                                }}
+                            </th>
+                        </tr>
+                        <tr class="py-4 text-center ">
+                            <th 
+                                class="border border-white border-opacity-10 whitespace-nowrap text-md"
+                            >
+                                Image :
+                            </th>
+                            <td 
+                                v-for="hourData in weatherData.hourly" 
+                                :key="hourData.dt" 
+                                class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                            >
+                                <img
+                                    class="w-[50px] h-[50px] object-cover mx-auto"
+                                    :src="`http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`"
+                                />
+                            </td>
+                        </tr>
+                        <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10 whitespace-nowrap text-md"
+                        >
+                            Weather :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm text-center capitalize border border-white border-opacity-10"
+                        >
+                            {{ hourData.weather[0].description }}
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10 whitespace-nowrap text-md"
+                        >
+                            Temperature :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" v-if="fahrenheit"
+                        >
+                            {{ Math.round(hourData.temp) }}&deg; F
+                        </td>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" 
+                            v-if="celsius"
+                        >
+                            {{ Math.round((hourData.temp - 32) / 1.8000) }}&deg; C
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10 whitespace-nowrap text-md"
+                        >
+                            Feels Like :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" 
+                            v-if="fahrenheit"
+                        >
+                            {{ Math.round(hourData.feels_like) }}&deg; F
+                        </td>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" 
+                            v-if="celsius"
+                        >
+                            {{ Math.round((hourData.feels_like - 32) / 1.8000) }}&deg; C
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Clouds :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.clouds}} %
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Humidity :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-md border border-white border-opacity-10"
+                        >
+                            {{ hourData.humidity}} %
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Dew Point:
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" 
+                            v-if="fahrenheit"
+                        >
+                            {{ Math.round(hourData.dew_point) }}&deg; F
+                        </td>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10" 
+                            v-if="celsius"
+                        >
+                            {{ Math.round((hourData.dew_point - 32) / 1.8000) }}&deg; C
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Pressure :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.pressure}} hPa
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Visibility :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.visibility / 1000 }} km
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Wind Speed :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.wind_speed }} km
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                        class="border border-white border-opacity-10"
+                        >
+                            Wind Gust :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" 
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                            >
+                            {{ hourData.wind_gust }} m/s
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            WindDirection:
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt"
+                            class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            <span v-if="(hourData.wind_deg >= 0.0 && hourData.wind_deg <= 11.25) || (hourData.wind_deg >= 348.76 && hourData.wind_deg <= 360.0)">N,</span>
+                            <span v-if="hourData.wind_deg >= 11.26 && hourData.wind_deg <= 33.75" >NNE,</span>
+                            <span v-if="hourData.wind_deg >= 33.76 && hourData.wind_deg <= 56.25" >NE,</span>
+                            <span v-if="hourData.wind_deg >= 56.26 && hourData.wind_deg <= 78.75" >ENE,</span>
+                            <span v-if="hourData.wind_deg >= 78.76 && hourData.wind_deg <= 101.25" >E,</span>
+                            <span v-if="hourData.wind_deg >= 101.26 && hourData.wind_deg <= 123.75" >ESE,</span>
+                            <span v-if="hourData.wind_deg >= 123.76 && hourData.wind_deg <= 146.25" >SE,</span>
+                            <span v-if="hourData.wind_deg >= 146.26 && hourData.wind_deg <= 168.75" >SSE,</span>
+                            <span v-if="hourData.wind_deg >= 168.76 && hourData.wind_deg <= 191.25" >S,</span>
+                            <span v-if="hourData.wind_deg >= 191.26 && hourData.wind_deg <= 213.75" >SSW,</span>
+                            <span v-if="hourData.wind_deg >= 213.76 && hourData.wind_deg <= 236.25" >SW,</span>
+                            <span v-if="hourData.wind_deg >= 236.26 && hourData.wind_deg <= 258.75" >WSW,</span>
+                            <span v-if="hourData.wind_deg >= 258.76 && hourData.wind_deg <= 281.25" >W,</span>
+                            <span v-if="hourData.wind_deg >= 281.26 && hourData.wind_deg <= 303.75" >WNW,</span>
+                            <span v-if="hourData.wind_deg >= 303.76 && hourData.wind_deg <= 326.25" >NW,</span>
+                            <span v-if="hourData.wind_deg >= 326.26 && hourData.wind_deg <= 348.75" >NNW,</span>
+                            {{ hourData.wind_deg }}&deg;
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                            >
+                                UV Index :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.uvi }} 
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                        class="border border-white border-opacity-10"
+                        >
+                            PoP :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.pop}}
+                        </td>
+                    </tr>
+                    <tr class="py-4 text-center">
+                        <th 
+                            class="border border-white border-opacity-10"
+                        >
+                            Rain Rate :
+                        </th>
+                        <td 
+                            v-for="hourData in weatherData.hourly" 
+                            :key="hourData.dt" class="whitespace-nowrap text-sm border border-white border-opacity-10"
+                        >
+                            {{ hourData.rain }} mm
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+    </div>
 
         <hr class="border-white border-opacity-10 border w-full"/>
         <!-- Daily Weather-->
