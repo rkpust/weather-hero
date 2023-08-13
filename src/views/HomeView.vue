@@ -1,13 +1,16 @@
 <template>
   <main class="container text-white">
     <div class="pt-4 mb-8 relative">
-      <input 
+      <span class="flex flex-row">
+        <i class="fa-solid fa-magnifying-glass-location fa-shake pr-2 text-xl text-center my-auto"></i>
+        <input 
         type="text"
         v-model="searchQuery"
         @input="getSearchResults"
         placeholder="Search for a city or state"
-      class="py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#004E71]"
+        class="py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#004E71]"
       >
+    </span>
       <ul 
         class="absolute bg-weather-secondary text white w-full shadow-md py-2 px-1 top-[66px]"
         v-if="mapboxSearchResults"
