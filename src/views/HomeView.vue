@@ -33,7 +33,7 @@
       </template>
       </ul>
 
-      <img v-if="!searchQuery" class="mx-auto" src="/image/weather_logo.png" />
+      <img class="mx-auto" src="/image/weather_logo.png" />
     </div>
 
     <!-- Saved City Info Will Show-->
