@@ -19,7 +19,7 @@ import TheFooter from './components/TheFooter.vue';
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: 700ms ease all;
+  transition: 600ms ease all;
 }
 
 .page-enter-from,
