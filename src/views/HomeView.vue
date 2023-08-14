@@ -42,7 +42,7 @@
       <Suspense>
         <CityList />
         <template #fallback>
-          <p class="text-center text-white py-24">Loading...</p>
+          <CityCardSkeleton />
         </template>
       </Suspense>
     </div>
@@ -54,6 +54,7 @@ import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import CityList from "../components/CityList.vue";
+import CityCardSkeleton from "../components/CityCardSkeleton.vue";
 
 const router = useRouter();
 const previewCity = (searchResult) => {
