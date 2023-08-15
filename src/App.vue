@@ -6,6 +6,7 @@
         <component :is="Component" />
       </Transition>
     </RouterView>
+    <GoTop />
     <TheFooter />
   </div>
 </template>
@@ -13,6 +14,7 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import SiteNavigation from './components/SiteNavigation.vue';
+import GoTop from './components/GoTop.vue';
 import TheFooter from './components/TheFooter.vue';
 </script>
 
