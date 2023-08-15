@@ -1,4 +1,5 @@
-# weather-app
+# Weather Hero
+[![Netlify Status](https://api.netlify.com/api/v1/badges/55fe317b-baad-4aaf-b948-6049044ecacf/deploy-status)](https://app.netlify.com/sites/weather-hero/deploys)
 
 This template should help get you started developing with Vue 3 in Vite.
 
