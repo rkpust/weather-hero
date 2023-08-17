@@ -116,7 +116,42 @@
                     Pressure: {{ weatherData.current.pressure }} mbar 
                 </p>
                 <p>
-                    UV Index: {{ weatherData.current.uvi }}
+                    UV Index: {{ weatherData.current.uvi }},
+                    <span 
+                        v-if="weatherData.current.uvi >= 0.0 && weatherData.current.uvi <= 2.0" 
+                        class="bg-green-500 rounded px-1 text-sm"
+                        title="Wear sunglasses on bright days."
+                        >
+                        Low
+                    </span>
+                    <span 
+                        v-if="weatherData.current.uvi >= 2.1 && weatherData.current.uvi <= 5.0" 
+                        class="bg-yellow-500 rounded px-1 text-sm "
+                        title="Stay in shade near midday when the Sun is strongest."
+                        > 
+                        Moderate
+                    </span>
+                    <span 
+                        v-if="weatherData.current.uvi >= 5.1 && weatherData.current.uvi <= 7.0" 
+                        class="bg-orange-500 rounded px-1 text-sm"
+                        title="Reduce time in the sun between 10 a.m. and 4 p.m."
+                        > 
+                        High
+                    </span>
+                    <span 
+                        v-if="weatherData.current.uvi >= 7.1 && weatherData.current.uvi <= 10.0" 
+                        class="bg-red-500 rounded px-1 text-sm"
+                        title="Minimize sun exposure between 10 a.m. and 4 p.m."
+                        > 
+                        Very High
+                    </span>
+                    <span 
+                        v-if="weatherData.current.uvi > 10.1" 
+                        class="bg-violet-500 rounded px-1 text-sm"
+                        title="Try to avoid sun exposure between 10 a.m. and 4 p.m."
+                        > 
+                        Extreme
+                    </span>
                 </p>
                 <p>
                     Visibility: {{ weatherData.current.visibility / 1000 }} km
