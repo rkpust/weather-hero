@@ -428,7 +428,44 @@
                             v-for="hourData in weatherData.hourly" 
                             :key="hourData.dt" class="whitespace-nowrap text-sm border border-white border-opacity-10"
                         >
-                            {{ hourData.uvi }} 
+                            <span>
+                                {{ hourData.uvi }}, 
+                                <span 
+                                    v-if="hourData.uvi >= 0.0 && hourData.uvi <= 2.0" 
+                                    class="bg-green-500 rounded px-1 text-[10px]"
+                                    title="Wear sunglasses on bright days."
+                                    >
+                                    Low
+                                </span>
+                                <span 
+                                    v-if="hourData.uvi >= 2.1 && hourData.uvi <= 5.0" 
+                                    class="bg-yellow-500 rounded px-1 text-[10px]"
+                                    title="Stay in shade near midday when the Sun is strongest."
+                                    > 
+                                    Moderate
+                                </span>
+                                <span 
+                                    v-if="hourData.uvi >= 5.1 && hourData.uvi <= 7.0" 
+                                    class="bg-orange-500 rounded px-1 text-[10px]"
+                                    title="Reduce time in the sun between 10 a.m. and 4 p.m."
+                                    > 
+                                    High
+                                </span>
+                                <span 
+                                    v-if="hourData.uvi >= 7.1 && hourData.uvi <= 10.0" 
+                                    class="bg-red-500 rounded px-1 text-[10px]"
+                                    title="Minimize sun exposure between 10 a.m. and 4 p.m."
+                                    > 
+                                    Very High
+                                </span>
+                                <span 
+                                    v-if="hourData.uvi > 10.1" 
+                                    class="bg-violet-500 rounded px-1 text-[10px]"
+                                    title="Try to avoid sun exposure between 10 a.m. and 4 p.m."
+                                    > 
+                                    Extreme
+                                </span>
+                            </span>
                         </td>
                     </tr>
                     <tr class="py-4 text-center">
