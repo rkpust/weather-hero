@@ -128,7 +128,24 @@
                     Wind Gust: {{ weatherData.current.wind_gust}} m/s
                 </p>
                 <p>
-                    Wind Degree: {{ weatherData.current.wind_deg }}
+                    Wind Direction, Degree: 
+                            <span v-if="(weatherData.current.wind_deg >= 0.0 && weatherData.current.wind_deg <= 11.25) || (weatherData.current.wind_deg >= 348.76 && weatherData.current.wind_deg <= 360.0)">N,</span>
+                            <span v-if="weatherData.current.wind_deg >= 11.26 && weatherData.current.wind_deg <= 33.75" >NNE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 33.76 && weatherData.current.wind_deg <= 56.25" >NE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 56.26 && weatherData.current.wind_deg <= 78.75" >ENE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 78.76 && weatherData.current.wind_deg <= 101.25" >E,</span>
+                            <span v-if="weatherData.current.wind_deg >= 101.26 && weatherData.current.wind_deg <= 123.75" >ESE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 123.76 && weatherData.current.wind_deg <= 146.25" >SE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 146.26 && weatherData.current.wind_deg <= 168.75" >SSE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 168.76 && weatherData.current.wind_deg <= 191.25" >S,</span>
+                            <span v-if="weatherData.current.wind_deg >= 191.26 && weatherData.current.wind_deg <= 213.75" >SSW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 213.76 && weatherData.current.wind_deg <= 236.25" >SW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 236.26 && weatherData.current.wind_deg <= 258.75" >WSW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 258.76 && weatherData.current.wind_deg <= 281.25" >W,</span>
+                            <span v-if="weatherData.current.wind_deg >= 281.26 && weatherData.current.wind_deg <= 303.75" >WNW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 303.76 && weatherData.current.wind_deg <= 326.25" >NW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 326.26 && weatherData.current.wind_deg <= 348.75" >NNW,</span>
+                    {{ weatherData.current.wind_deg }}&deg;
                 </p>
         </div>
 
@@ -347,23 +364,23 @@
                             :key="hourData.dt"
                             class="whitespace-nowrap text-sm border border-white border-opacity-10"
                         >
-                            <span v-if="(hourData.wind_deg >= 0.0 && hourData.wind_deg <= 11.25) || (hourData.wind_deg >= 348.76 && hourData.wind_deg <= 360.0)">N,</span>
-                            <span v-if="hourData.wind_deg >= 11.26 && hourData.wind_deg <= 33.75" >NNE,</span>
-                            <span v-if="hourData.wind_deg >= 33.76 && hourData.wind_deg <= 56.25" >NE,</span>
-                            <span v-if="hourData.wind_deg >= 56.26 && hourData.wind_deg <= 78.75" >ENE,</span>
-                            <span v-if="hourData.wind_deg >= 78.76 && hourData.wind_deg <= 101.25" >E,</span>
-                            <span v-if="hourData.wind_deg >= 101.26 && hourData.wind_deg <= 123.75" >ESE,</span>
-                            <span v-if="hourData.wind_deg >= 123.76 && hourData.wind_deg <= 146.25" >SE,</span>
-                            <span v-if="hourData.wind_deg >= 146.26 && hourData.wind_deg <= 168.75" >SSE,</span>
-                            <span v-if="hourData.wind_deg >= 168.76 && hourData.wind_deg <= 191.25" >S,</span>
-                            <span v-if="hourData.wind_deg >= 191.26 && hourData.wind_deg <= 213.75" >SSW,</span>
-                            <span v-if="hourData.wind_deg >= 213.76 && hourData.wind_deg <= 236.25" >SW,</span>
-                            <span v-if="hourData.wind_deg >= 236.26 && hourData.wind_deg <= 258.75" >WSW,</span>
-                            <span v-if="hourData.wind_deg >= 258.76 && hourData.wind_deg <= 281.25" >W,</span>
-                            <span v-if="hourData.wind_deg >= 281.26 && hourData.wind_deg <= 303.75" >WNW,</span>
-                            <span v-if="hourData.wind_deg >= 303.76 && hourData.wind_deg <= 326.25" >NW,</span>
-                            <span v-if="hourData.wind_deg >= 326.26 && hourData.wind_deg <= 348.75" >NNW,</span>
-                            {{ hourData.wind_deg }}&deg;
+                            <span v-if="(weatherData.current.wind_deg >= 0.0 && weatherData.current.wind_deg <= 11.25) || (weatherData.current.wind_deg >= 348.76 && weatherData.current.wind_deg <= 360.0)">N,</span>
+                            <span v-if="weatherData.current.wind_deg >= 11.26 && weatherData.current.wind_deg <= 33.75" >NNE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 33.76 && weatherData.current.wind_deg <= 56.25" >NE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 56.26 && weatherData.current.wind_deg <= 78.75" >ENE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 78.76 && weatherData.current.wind_deg <= 101.25" >E,</span>
+                            <span v-if="weatherData.current.wind_deg >= 101.26 && weatherData.current.wind_deg <= 123.75" >ESE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 123.76 && weatherData.current.wind_deg <= 146.25" >SE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 146.26 && weatherData.current.wind_deg <= 168.75" >SSE,</span>
+                            <span v-if="weatherData.current.wind_deg >= 168.76 && weatherData.current.wind_deg <= 191.25" >S,</span>
+                            <span v-if="weatherData.current.wind_deg >= 191.26 && weatherData.current.wind_deg <= 213.75" >SSW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 213.76 && weatherData.current.wind_deg <= 236.25" >SW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 236.26 && weatherData.current.wind_deg <= 258.75" >WSW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 258.76 && weatherData.current.wind_deg <= 281.25" >W,</span>
+                            <span v-if="weatherData.current.wind_deg >= 281.26 && weatherData.current.wind_deg <= 303.75" >WNW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 303.76 && weatherData.current.wind_deg <= 326.25" >NW,</span>
+                            <span v-if="weatherData.current.wind_deg >= 326.26 && weatherData.current.wind_deg <= 348.75" >NNW,</span>
+                            {{ weatherData.current.wind_deg }}&deg;
                         </td>
                     </tr>
                     <tr class="py-4 text-center">
