@@ -33,7 +33,7 @@
       </template>
       </ul>
 
-      <img class="mx-auto" src="/image/weather_logo.png" />
+      <span class="text-center text-5xl"><img class="mx-auto" src="/image/weather_logo.png" alt="Weather Hero"/></span>
     </div>
 
     <!-- Saved City Info Will Show-->

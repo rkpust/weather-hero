@@ -69,7 +69,7 @@
                 />
 
                 <div class="flex flex-row items-center gap-4">
-                    <img class="w-[50px] h-[50px] mt-2" src="/image/sunrise.png" />
+                    <span class="mt-3"><img class="w-[50px] h-[50px] mt-2" src="/image/sunrise.png" alt="Sunrise:" /></span>
                     {{
                         new Date(weatherData.sunRise).toLocaleTimeString(
                             "en-us",
@@ -81,7 +81,7 @@
                         )
                     }}
 
-                    <img class="w-[50px] h-[50px] ml-2" src="/image/sunset.png" />
+                    <span class="mt-5"><img class="w-[50px] h-[50px] ml-2" src="/image/sunset.png" alt="Sunset:" /></span>
                     {{
                         new Date(weatherData.sunSet).toLocaleTimeString(
                             "en-us",
@@ -219,7 +219,8 @@
                             >
                                 <img
                                     class="w-[50px] h-[50px] object-cover mx-auto"
-                                    :src="`http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`"
+                                    :src="`http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`" 
+                                    :alt="`${hourData.weather[0].main}`"
                                 />
                             </td>
                         </tr>
@@ -519,7 +520,8 @@
                     </p>
                     <img
                     class="w-[50px] h-[50px] object-cover"
-                    :src=" `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png` "
+                    :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`"
+                    :alt="`${day.weather[0].main}`"
                     />
                     <div class="flex gap-2 flex-1 justify-end">
                         <p v-if="fahrenheit">H: {{ Math.round(day.temp.max) }}&deg;</p>
